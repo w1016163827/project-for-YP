@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <template v-if="userInfo.id">
+    <template v-if="userInfo.name">
       <el-container>
         <el-aside v-l width="auto"><demo></demo></el-aside>
         <el-container>

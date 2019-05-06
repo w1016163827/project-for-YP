@@ -26,6 +26,6 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  render: h => h(App),
-  store
+  store,
+  render: h => h(App)
 })

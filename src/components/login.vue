@@ -9,21 +9,21 @@
       >
         <h3>登录</h3>
         <el-form-item >
-          <el-input v-model="userName" placeholder="请输入用户名"></el-input>
+          <el-input v-model="form.userName" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item >
-          <el-input v-model="password" placeholder="请输入密码"></el-input>
+          <el-input v-model="form.password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item class="login-button">
           <el-row>
-            <el-col span="18" offset="3">
-              <el-button type="primary" @click="Submit" class="login-button">登录</el-button>
+            <el-col :span="18" :offset="3">
+              <el-button type="primary" @click="submit" class="login-button">登录</el-button>
             </el-col>
           </el-row>
         </el-form-item>
         <el-form-item class="login-button">
           <el-row>
-            <el-col span="18" offset="3">
+            <el-col :span="18" :offset="3">
               <el-button type="primary" @click="isLogin=!isLogin" class="login-button">注册</el-button>
             </el-col>
           </el-row>
@@ -39,14 +39,14 @@
       >
         <h3>注册</h3>
         <el-form-item>
-          <el-input v-model="userName" placeholder="请输入用户名"></el-input>
+          <el-input v-model="form.userName" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item >
-          <el-input v-model="password" placeholder="请输入密码"></el-input>
+          <el-input v-model="form.password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item class="login-button">
           <el-row>
-            <el-col span="18" offset="3">
+            <el-col :span="18" :offset="3">
               <el-button type="primary"
                          class="login-button"
                          @click="isLogin=!isLogin"
@@ -56,7 +56,7 @@
         </el-form-item>
         <el-form-item class="login-button">
           <el-row>
-            <el-col span="18" offset="3">
+            <el-col :span="18" :offset="3">
               <el-button type="primary"
                          class="login-button"
                          @click="register"
@@ -71,17 +71,21 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
   export default {
     data() {
       return {
-        userName:'',
-        password:'',
+        form:{
+          userName:'',
+          password:''
+        },
         isLogin:true
       }
     },
     methods: {
+      ...mapActions(['login']),
       submit() {
-
+        this.login({name:this.form.userName,password:this.form.password})
       },
       register(){
 

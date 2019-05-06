@@ -2,14 +2,16 @@
     <div class="top">
         <div class="top-right">
             <el-row :gutter="20" style="margin:0;padding:0">
-                <el-dropdown :hide-on-click="true">
+                <el-dropdown :hide-on-click="true" @command="handleCommand">
                     <span class="el-dropdown-link">
-                        root<i class="el-icon-arrow-down el-icon--right"></i>
+                        {{userInfo.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>个人资料</el-dropdown-item>
                         <el-dropdown-item>修改密码</el-dropdown-item>
-                        <el-dropdown-item divided>退出登录</el-dropdown-item>
+                        <el-dropdown-item divided
+                                          command="loginOut"
+                        >退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </el-row>
@@ -43,7 +45,18 @@
 
 </style>
 <script>
-    export default {
-        
+  import {mapActions,mapState} from 'vuex'
+  export default {
+    methods:{
+      ...mapActions(['loginOut']),
+      handleCommand(command){
+        if(command === 'loginOut'){
+          this.loginOut()
+        }
+      }
+    },
+    computed:{
+      ...mapState(['userInfo'])
     }
+  }
 </script>

@@ -19,6 +19,8 @@ export default function (url = '', params = {}, type = 'GET') {
       promise = axios.get(url);
     }else if(type === 'POST'){
       promise = axios.post(url,params);
+    }else if(type === 'PUT'){
+      promise = axios.put(url,params);
     }
     promise.then((response)=>{
       resolve(response);
